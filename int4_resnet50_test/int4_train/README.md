@@ -7,15 +7,24 @@
 ## float模型训练
 注意：-n 8 表示8卡训练。需要根据实际卡的数量进行调整。
 ```
-python3 train.py -d data/ -a resnet50 -n 8 --save log --epochs 90 -b 64 --lr 0.025 --momentum 0.9 --weight-decay 1e-4 --mode normal -j 4
+python3 train.py -d data -a resnet18 -n 1 --save log --epochs 90 -b 64 --lr 0.025 --momentum 0.9 --weight-decay 1e-4 --mode normal -j 4
 ```
+
+测试 fp32 模型精度
+
 
 ## float int4校准
 ```
-python3 calibrate.py -d data/ -a resnet50 -m log/resnet50/normal/checkpoint.pkl -o model_qat_init.pkl
+python3 calibrate.py -d data -a resnet18 -m log/resnet18/normal/checkpoint.pkl -o model_qat_init.pkl
 ```
 
 ## qat模型训练
 ```
-python3 train.py -d data/ -a resnet50 -n 8 --save log --epochs 10 -b 64 --lr 0.00025 --momentum 0.9 --weight-decay 1e-5 --mode qat -j 4 -m model_qat_init.pkl --warmup_epochs 0
+python3 train.py -d data/ -a resnet18 -n 1 --save log --epochs 10 -b 64 --lr 0.00025 --momentum 0.9 --weight-decay 1e-5 --mode qat -j 4 -m model_qat_init.pkl --warmup_epochs 0
 ```
+
+## 模型 dump
+
+训练结束后，把模型导出为静态图  https://www.megengine.org.cn/doc/stable/zh/user-guide/model-development/serialization/index.html?highlight=%E8%BD%AC%E6%88%90%20mge
+
+python3 dump.py -m log/resnet18/qat/checkpoint.pkl

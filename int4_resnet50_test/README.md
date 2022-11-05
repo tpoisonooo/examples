@@ -36,6 +36,8 @@ $ mkdir data && cd data && mkdir img
 ```
 将测试图片放入 data/img 目录下；将对应图片顺序的 label ，放到 data 目录下，使用 numpy 保存，并命名为 label.npy（其内容就是一维数组）。
 
+(转换脚本和生成的 `label.npy` 在 prepare_label 目录下)
+
 ## engine 生成
 
 如果你使用的环境并非上述指定的软件环境以及 A2 卡。则需要为 INT8 量化的 ResNet-50 模型重新生成 TensorRT engine 文件。

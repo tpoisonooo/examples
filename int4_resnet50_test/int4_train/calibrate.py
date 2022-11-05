@@ -19,7 +19,6 @@ from collections import OrderedDict
 from IPython import embed
 import numpy as np
 from tqdm import tqdm
-import rrun
 
 import megengine as mge
 import megengine.module as M
@@ -41,7 +40,7 @@ def main():
     parser.add_argument(
         "-a",
         "--arch",
-        default="resnet50",
+        default="resnet18",
         help="model architecture (default: resnet50)",
     )
     parser.add_argument(

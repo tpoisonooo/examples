@@ -39,7 +39,7 @@ def main():
 
 def worker(args):
     # performance test
-    os.system("python3 -m megengine.tools.load_network_and_run {} --fast-run --iter 60 --profile mma.json --weight-preprocess".format(args.model))
+    os.system("python3 -m megengine.tools.load_network_and_run {} --fast-run --iter 500 --profile mma.json --weight-preprocess".format(args.model))
     # build dataset
     valid_dataloader = build_dataset(args)
 
